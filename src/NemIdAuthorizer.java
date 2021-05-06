@@ -7,7 +7,7 @@ public class NemIdAuthorizer {
     private final String LETTERS = "abcdefghijklmnopqrstuvxyz";
     private final String LEGAL_CHARS = "{}!#\"$’%^&,*()_+-=:;?.@ ";
 
-    NemIdAuthorizer(String pathToData) throws FileNotFoundException {
+    NemIdAuthorizer(String pathToData){
         this.USERS = new UserFileReader(pathToData);
     }
 

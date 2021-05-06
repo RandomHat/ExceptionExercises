@@ -5,12 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class NemIdAuthorizerTest {
 
-    public static void main(String[] args) throws FileNotFoundException {
-
+    public void testHasRepeatChars(){
+        //Arrange
         NemIdAuthorizer testHasRepeatChars = new NemIdAuthorizer("Users/UserData.csv");
-
-        assertEquals(true, testHasRepeatChars.hasRepeatChars("awegriiwægæhwæelhAAAA238402"));
-
-        assertEquals(false, testHasRepeatChars.hasRepeatChars("adælsælgjdæ308y5oæklfsdknglæ"));
+        //Act
+        boolean stringWith = testHasRepeatChars.hasRepeatChars("awegriiwægæhwæelhAAAA238402");
+        boolean stringWithout = testHasRepeatChars.hasRepeatChars("adælsælgjdæ308y5oæklfsdknglæ");
+        //Assert
+        assertTrue(stringWith);
+        assertFalse(stringWithout);
     }
 }

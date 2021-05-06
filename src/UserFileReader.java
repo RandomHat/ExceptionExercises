@@ -8,16 +8,21 @@ import java.util.Scanner;
 public class UserFileReader{
     private final List<User> USERS = new ArrayList<>();
 
-    public UserFileReader(String path) throws FileNotFoundException {
-        File userDataCSV = new File(path);
-        Scanner userDataScanner = new Scanner(userDataCSV);
-        userDataScanner.nextLine();
-        while (userDataScanner.hasNext()) {
-            String currentLine = userDataScanner.nextLine();
-            String[] currentLineArray = currentLine.split(";");
-            String cpr = currentLineArray[0].trim();
-            String password = currentLineArray[1].trim();
-            USERS.add(new User(cpr, password));
+    public UserFileReader(String path){
+        try {
+            File userDataCSV = new File(path);
+            Scanner userDataScanner = new Scanner(userDataCSV);
+            userDataScanner.nextLine();
+            while (userDataScanner.hasNext()) {
+                String currentLine = userDataScanner.nextLine();
+                String[] currentLineArray = currentLine.split(";");
+                String cpr = currentLineArray[0].trim();
+                String password = currentLineArray[1].trim();
+                USERS.add(new User(cpr, password));
+            }
+        }
+        catch (FileNotFoundException err){
+            System.err.println("File Not Found");
         }
     }
 
