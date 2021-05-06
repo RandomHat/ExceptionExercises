@@ -21,11 +21,11 @@ class NemIdAuthorizerTest {
     @Test
     void hasRepeatChars(){
         //Act
-        String stringWithBeginning = "hhhhqæuæowiqbgæqb43";
-        String stringWithMiddle = "awegriiwægæhwæelhAAAA238402";
-        String stringWithEnd = "aæjfbæaeubhoih32grjkawebfæk0000";
+        String stringWithBeginning = "hhhhquowiqbgqb43";
+        String stringWithMiddle = "awegriiwghwelhAAAA238402";
+        String stringWithEnd = "ajfbaeubhoih32grjkawebfk0000";
 
-        String stringWithout = "adælsælgjdæ308y5oæklfsdknglæ";
+        String stringWithout = "adlslgjd308y5oklfsdkngl";
         //Assert
         assertTrue(classUnderTest.hasRepeatChars(stringWithBeginning));
         assertTrue(classUnderTest.hasRepeatChars(stringWithMiddle));
@@ -112,5 +112,14 @@ class NemIdAuthorizerTest {
 
     @Test
     void isANumberSeries() {
+        var from1 = "1234";
+        var from5 = "5678";
+        var from9 = "9101";
+        var from10 = "1011";
+
+        assertTrue(classUnderTest.isANumberSeries(from1));
+        assertTrue((classUnderTest.isANumberSeries(from5)));
+        assertFalse(classUnderTest.isANumberSeries(from9));
+        assertFalse(classUnderTest.isANumberSeries(from10));
     }
 }
