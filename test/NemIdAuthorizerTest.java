@@ -91,6 +91,19 @@ class NemIdAuthorizerTest {
 
     @Test
     void isValidPin() {
+        // Act
+        String tooManyChars = "iiiii";
+        String shouldWork = "1234";
+        String tooFewChars = "1s3";
+        String withWhitespaces = "1 2 3 4";
+        String withUncomonSymbols = "#¤%&";
+
+        //Assert
+        assertFalse(classUnderTest.isValidPin(tooManyChars));
+        assertTrue(classUnderTest.isValidPin(shouldWork));
+        assertFalse(classUnderTest.isValidPin(tooFewChars));
+        assertFalse(classUnderTest.isValidPin(withWhitespaces));
+        assertTrue(classUnderTest.isValidPin(withUncomonSymbols));
     }
 
     @Test
