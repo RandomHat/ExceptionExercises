@@ -44,10 +44,24 @@ class NemIdAuthorizerTest {
 
     @Test
     void hasIllegalBlank() {
+        var start = " kgjaoghargusa";
+        var middle = "ofghagh hgoadihfa123";
+        var end = "goairhg123 ";
+        var none = "ghidargharkkkk334455";
+        assertTrue(classUnderTest.hasIllegalBlank(start));
+        assertFalse(classUnderTest.hasIllegalBlank(middle));
+        assertTrue(classUnderTest.hasIllegalBlank(end));
+        assertFalse(classUnderTest.hasIllegalBlank(none));
     }
 
     @Test
     void containsCpr() {
+        var cpr = "1122334444";
+        assertTrue(classUnderTest.containsCpr(cpr, cpr + "somethingElse"));
+        assertTrue(classUnderTest.containsCpr(cpr, "somethingElse" + cpr));
+        assertTrue(classUnderTest.containsCpr(cpr, "something" + cpr + "else"));
+        assertFalse(classUnderTest.containsCpr(cpr, "somethingElse"));
+        assertFalse(classUnderTest.containsCpr(cpr, cpr.substring(0, 6)));
     }
 
     @Test
