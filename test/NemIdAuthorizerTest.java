@@ -48,6 +48,12 @@ class NemIdAuthorizerTest {
 
     @Test
     void containsCpr() {
+        var cpr = "1122334444";
+        assertTrue(classUnderTest.containsCpr(cpr, cpr + "somethingElse"));
+        assertTrue(classUnderTest.containsCpr(cpr, "somethingElse" + cpr));
+        assertTrue(classUnderTest.containsCpr(cpr, "something" + cpr + "else"));
+        assertFalse(classUnderTest.containsCpr(cpr, "somethingElse"));
+        assertFalse(classUnderTest.containsCpr(cpr, cpr.substring(0, 6)));
     }
 
     @Test
