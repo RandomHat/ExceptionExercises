@@ -21,11 +21,17 @@ class NemIdAuthorizerTest {
     @Test
     void hasRepeatChars(){
         //Act
-        boolean stringWith = classUnderTest.hasRepeatChars("awegriiwægæhwæelhAAAA238402");
-        boolean stringWithout = classUnderTest.hasRepeatChars("adælsælgjdæ308y5oæklfsdknglæ");
+        String stringWithBeginning = "hhhhqæuæowiqbgæqb43";
+        String stringWithMiddle = "awegriiwægæhwæelhAAAA238402";
+        String stringWithEnd = "aæjfbæaeubhoih32grjkawebfæk0000";
+
+        String stringWithout = "adælsælgjdæ308y5oæklfsdknglæ";
         //Assert
-        assertTrue(stringWith);
-        assertFalse(stringWithout);
+        assertTrue(classUnderTest.hasRepeatChars(stringWithBeginning));
+        assertTrue(classUnderTest.hasRepeatChars(stringWithMiddle));
+        assertTrue(classUnderTest.hasRepeatChars(stringWithEnd));
+
+        assertFalse(classUnderTest.hasRepeatChars(stringWithout));
     }
 
     @Test
