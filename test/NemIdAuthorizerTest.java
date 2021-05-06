@@ -44,6 +44,14 @@ class NemIdAuthorizerTest {
 
     @Test
     void hasIllegalBlank() {
+        var start = " kgjaoghargusa";
+        var middle = "ofghagh hgoadihfa123";
+        var end = "goairhg123 ";
+        var none = "ghidargharkkkk334455";
+        assertTrue(classUnderTest.hasIllegalBlank(start));
+        assertFalse(classUnderTest.hasIllegalBlank(middle));
+        assertTrue(classUnderTest.hasIllegalBlank(end));
+        assertFalse(classUnderTest.hasIllegalBlank(none));
     }
 
     @Test
