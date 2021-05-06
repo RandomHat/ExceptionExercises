@@ -36,10 +36,35 @@ class NemIdAuthorizerTest {
 
     @Test
     void isValidPassword() {
+        // Act
+
+        // testing boundary
+        String lengthBeyondMax= "1234567890123456789012345678901234567890a";
+        String lengthMax= "1234567890123456789012345678901234567890";
+
+        String lengthBelowMin = "123a";
+        String lengthMin = "12345a";
+
+        // Assert
+        assertFalse(classUnderTest.isValidPassword(lengthBeyondMax));
+        assertTrue(classUnderTest.isValidPassword(lengthMax));
+
+        assertFalse(classUnderTest.isValidPassword(lengthBelowMin));
+        assertTrue(classUnderTest.isValidPassword(lengthMin));
     }
 
     @Test
     void hasLetters() {
+        // Act
+
+        String onlyLetters = "kaksdnglandsglan";
+        String lettersAndNumbers = "t367268rt18r";
+        String onlyNumbers = "12345175038176";
+
+        //Assert
+        assertTrue(classUnderTest.hasLetters(onlyLetters));
+        assertTrue(classUnderTest.hasLetters(lettersAndNumbers));
+        assertTrue(classUnderTest.hasLetters(onlyNumbers));
     }
 
     @Test
