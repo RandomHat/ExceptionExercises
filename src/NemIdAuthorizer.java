@@ -26,7 +26,7 @@ public class NemIdAuthorizer {
         }
     }
 
-    private boolean isValidInput(String cpr, String password){
+    public boolean isValidInput(String cpr, String password){
         if (!isValidCpr(cpr)){
             throw new WrongCprFormatException();
         }
@@ -71,7 +71,7 @@ public class NemIdAuthorizer {
     }
 
 
-    private boolean validateUser(String cpr, String password){
+    boolean validateUser(String cpr, String password){
         User temp = new User (cpr, password);
         if (USERS.getUser(cpr).equals(temp)){
             authorizeUser(USERS.getUser(cpr));
@@ -82,25 +82,25 @@ public class NemIdAuthorizer {
     }
 
 
-    private void authorizeUser(User user){
+    void authorizeUser(User user){
         user.signIn();
         System.out.println(user);
     }
 
 
     // Cpr methods
-    private boolean isValidCpr(String cpr){
+    boolean isValidCpr(String cpr){
         return cpr.length() == 10;
     }
 
 
-    private boolean isUser(String cpr) {
+    boolean isUser(String cpr) {
         return USERS.isUser(cpr);
     }
 
 
     // General password methods
-    private boolean hasNumbers(String password){
+    boolean hasNumbers(String password){
         for (char a:
                 NUMBERS.toCharArray()) {
             if (password.contains(String.valueOf(a))){
@@ -112,7 +112,7 @@ public class NemIdAuthorizer {
     }
 
 
-    private boolean hasIllegalChars(String password){
+    boolean hasIllegalChars(String password){
         String testString = LEGAL_CHARS + NUMBERS + LETTERS;
         for (char a:
                 password.toCharArray()) {
@@ -124,7 +124,7 @@ public class NemIdAuthorizer {
     }
 
 
-    public boolean hasRepeatChars(String password){
+    boolean hasRepeatChars(String password){
         for (int i = 0; i<password.length(); i += 4) {
             char a = password.charAt(i);
             char[] data = {a,a,a,a};
@@ -137,11 +137,11 @@ public class NemIdAuthorizer {
     }
 
 
-    private boolean isValidPassword(String password){
+    boolean isValidPassword(String password){
         return (password.length() > 6 && password.length() < 40);
     }
 
-    private boolean hasLetters(String password){
+    boolean hasLetters(String password){
         for (char a:
              LETTERS.toCharArray()) {
             if (password.toLowerCase().contains(String.valueOf(a))){
@@ -153,22 +153,22 @@ public class NemIdAuthorizer {
     }
 
 
-    private boolean hasIllegalBlank(String password){
+    boolean hasIllegalBlank(String password){
         return password.startsWith(" ") || password.endsWith(" ");
     }
 
 
-    private boolean containsCpr(String cpr, String password){
+    boolean containsCpr(String cpr, String password){
         return password.contains(cpr);
     }
 
 
-    private boolean isValidPin(String password){
+    boolean isValidPin(String password){
         return password.length() == 4;
     }
 
 
-    private boolean hasSequenceFromCpr(String cpr, String password){
+    boolean hasSequenceFromCpr(String cpr, String password){
         for (int i = 0; i<password.length()-3;i++){
             if (password.contains(cpr.subSequence(i, i+3))){
                 return true;
@@ -178,7 +178,7 @@ public class NemIdAuthorizer {
     }
 
 
-    private boolean isANumberSeries(String password){
+    boolean isANumberSeries(String password){
         char[] data = password.toCharArray();
         return data[0] == data[1]-1 && data[2]-2 == data[3]-3;
     }
